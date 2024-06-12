@@ -63,32 +63,25 @@ const images = [
     description: 'Lighthouse Coast Sea',
   },
 ];
-const galleryContainer = document.querySelector('.gallery')
 
-function createGalleryItems(images) {
-      return images.map(({ preview, original, description }) => {
-        return `
-          <li class="gallery-item">
-            <a class="gallery-link" href="${original}">
-              <img
-                class="gallery-image"
-                src="${preview}"
-                data-source="${original}"
-                alt="${description}"
-              />
-            </a>
-          </li>
-        `;
-      }).join('');
-    }
+const galleryContainer = document.querySelector('.gallery');
+const galleryItems = images.map(({ preview, original, description }) => {
+  return `
+  <li class="gallery-item">
+  <a class="gallery-link" href="${original}">
+  <img src="${preview}" class="gallery-image" data-source="${original}" alt="${description}" />
+  </a>
+  </li>
+  `
+    ;
+}).join('')
 
-    const galleryMarkup = createGalleryItems(images);
-    galleryContainer.innerHTML = galleryMarkup;
+galleryContainer.insertAdjacentHTML('afterbegin', galleryItems);
 
-galleryContainer.addEventListener('click', hadlerGaleryClick);
-function hadlerGaleryClick(event) {
+galleryContainer.addEventListener('click', handlerGalleryClick);
+function handlerGalleryClick(event) {
   event.preventDefault();
-  const isGalleryItem = event.target.classList.contains('gallery-image');
+  const isGalleryItem = event.target.classList.contains("gallery-image");
   if (!isGalleryItem) {
     return;
   }
@@ -96,9 +89,76 @@ function hadlerGaleryClick(event) {
   openModal(originalSrc);
 }
 function openModal(src) {
-  const instance = basicLightbox.create(`<img src = "${src}" width="1112" height="640">`);
-    instance.show();
+  const instance = basicLightbox.create(`<img src="${src}" width="1112" height="640">`);
+  instance.show();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const galleryContainer = document.querySelector('.gallery')
+
+// function createGalleryItems(images) {
+//       return images.map(({ preview, original, description }) => {
+//         return `
+//           <li class="gallery-item">
+//             <a class="gallery-link" href="${original}">
+//               <img
+//                 class="gallery-image"
+//                 src="${preview}"
+//                 data-source="${original}"
+//                 alt="${description}"
+//               />
+//             </a>
+//           </li>
+//         `;
+//       }).join('');
+//     }
+
+//     const galleryMarkup = createGalleryItems(images);
+//     galleryContainer.insertAdjacentHTML('afterbegin', galleryMarkup);
+
+// galleryContainer.addEventListener('click', hadlerGaleryClick);
+// function hadlerGaleryClick(event) {
+//   event.preventDefault();
+//   const isGalleryItem = event.target.classList.contains('gallery-image');
+//   if (!isGalleryItem) {
+//     return;
+//   }
+//   const originalSrc = event.target.dataset.source;
+//   openModal(originalSrc);
+// }
+// function openModal(src) {
+//   const instance = basicLightbox.create(`<img src = "${src}" width="1112" height="640">`);
+//     instance.show();
+// }
 
 const style = document.createElement('style');
         style.textContent = `
